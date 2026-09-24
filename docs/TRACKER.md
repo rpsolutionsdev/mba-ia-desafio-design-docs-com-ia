@@ -50,7 +50,7 @@ A tabela abaixo estabelece a referência cruzada completa de cada decisão, requ
 | **INT-ORDERS-01** | `docs/FDD.md` | Integração de Código | Transação do changeStatus estendida com inserção na outbox | `CODIGO` | `src/modules/orders/order.service.ts` |
 | **INT-ERROR-01** | `docs/FDD.md` | Integração de Código | Subclasses de erro de webhook derivadas da classe base AppError | `CODIGO` | `src/shared/errors/app-error.ts` |
 | **INT-AUTH-01** | `docs/FDD.md` | Integração de Código | Autenticação JWT e proteção de rotas com requireRole | `CODIGO` | `src/middlewares/auth.middleware.ts` |
-| **INT-LOGGER-01** | `docs/FDD.md` | Integração de Código | Instrumentação de logs estruturados utilizando o logger Pino | `CODIGO` | `src/config/logger.ts` |
+| **INT-LOGGER-01** | `docs/FDD.md` | Integração de Código | Instrumentação de logs estruturados utilizando o logger Pino | `CODIGO` | `src/shared/logger/index.ts` |
 | **INT-MW-ERR-01** | `docs/FDD.md` | Integração de Código | Interceptação e serialização de erros no middleware centralizado | `CODIGO` | `src/middlewares/error.middleware.ts` |
 | **INT-SCHEMA-01** | `docs/FDD.md` | Integração de Código | Modelagem de dados com UUIDs e enum OrderStatus no schema Prisma | `CODIGO` | `prisma/schema.prisma` |
 | **INT-ENTRY-01** | `docs/FDD.md` | Integração de Código | Padrão de ponto de entrada paralelo a server.ts para worker.ts | `CODIGO` | `src/server.ts` |

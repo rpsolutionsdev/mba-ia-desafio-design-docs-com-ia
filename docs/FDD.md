@@ -329,7 +329,7 @@ Em conformidade com a convenção do projeto estabelecida em `src/shared/errors/
 ## 8. Observabilidade: Métricas, Logs e Tracing
 
 ### 8.1. Logs Estruturados (Pino)
-Em conformidade com `src/config/logger.ts`, todos os logs devem ser emitidos em JSON estruturado com campos contextuais padronizados:
+Em conformidade com `src/shared/logger/index.ts`, todos os logs devem ser emitidos em JSON estruturado com campos contextuais padronizados:
 ```json
 {
   "level": 30,
@@ -380,7 +380,7 @@ Esta seção mapeia os pontos exatos de extensão da base de código do OMS para
    * *Extensão:* Criação de subclasses especializadas derivadas de `AppError` para o domínio de webhooks (ex: `WebhookNotFoundError`, `WebhookInvalidUrlError`, `WebhookPayloadTooLargeError`, `WebhookReplayInvalidError`), todas recebendo seus respectivos códigos padronizados com o prefixo `WEBHOOK_*`.
 3. **[src/middlewares/auth.middleware.ts](file:///c:/Users/USER/workspace-antiigravity/mba-ia-desafio-design-docs-com-ia/src/middlewares/auth.middleware.ts):**
    * *Extensão:* As rotas CRUD de `/webhooks` utilizam o middleware `authMiddleware` existente para validar credenciais de operadores/usuários. A rota crítica `POST /admin/webhooks/dead-letter/:id/replay` acopla adicionalmente o middleware `requireRole(UserRole.ADMIN)` para garantir que operadores comuns não possam disparar reprocessamentos de mensagens.
-4. **[src/config/logger.ts](file:///c:/Users/USER/workspace-antiigravity/mba-ia-desafio-design-docs-com-ia/src/config/logger.ts):**
+4. **[src/shared/logger/index.ts](file:///c:/Users/USER/workspace-antiigravity/mba-ia-desafio-design-docs-com-ia/src/shared/logger/index.ts):**
    * *Extensão:* O logger Pino existente é importado diretamente no worker `src/worker.ts` e nos serviços de webhooks, garantindo que logs de ciclo de vida de rede, erros de entrega e replays possuam o mesmo formato padronizado de logging do restante do OMS.
 5. **[src/middlewares/error.middleware.ts](file:///c:/Users/USER/workspace-antiigravity/mba-ia-desafio-design-docs-com-ia/src/middlewares/error.middleware.ts):**
    * *Extensão:* O interceptor de exceções `errorHandler` captura e serializa automaticamente as instâncias de erro de webhook herdadas de `AppError`, retornando respostas HTTP padronizadas com formato `{ error: { code, message, details } }` sem necessidade de código novo de tratamento.
